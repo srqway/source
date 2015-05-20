@@ -75,5 +75,6 @@
 	<classpathentry kind="lib" path="ivy/maven-ant-tasks-2.1.3.jar"/>
 	<classpathentry kind="lib" path="src/plugin/parse-swf/lib/javaswf.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=apache-nutch-2.3&amp;ivyXmlPath=ivy%2Fivy.xml&amp;confs=*"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
