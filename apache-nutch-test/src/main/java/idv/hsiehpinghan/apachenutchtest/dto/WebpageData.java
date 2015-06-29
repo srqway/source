@@ -130,19 +130,22 @@ public class WebpageData {
 			return bytes == null ? null : Bytes.toString(bytes);
 		}
 
-		public byte getParseStatus() {
+		public Byte getParseStatus() {
 			byte[] bytes = cf.get(Bytes.toBytes("st"));
 			return bytes == null ? null : bytes[0];
 		}
 
 		public String getSignature() {
 			byte[] bytes = cf.get(Bytes.toBytes("sig"));
+			if(bytes == null) {
+				return null;
+			}
 			int size = bytes.length;
 			char[] chars = new char[size];
 			for (int i = 0; i < size; ++i) {
 				chars[i] = (char) bytes[i];
 			}
-			return bytes == null ? null : Bytes.toString(bytes);
+			return String.valueOf(chars);
 		}
 
 		public String getPrevSignature() {
@@ -164,7 +167,7 @@ public class WebpageData {
 			return bytes == null ? null : Bytes.toString(bytes);
 		}
 
-		public int getStatus() {
+		public Integer getStatus() {
 			byte[] bytes = cf.get(Bytes.toBytes("st"));
 			return bytes == null ? null : Bytes.toInt(bytes);
 		}
@@ -179,12 +182,12 @@ public class WebpageData {
 			return bytes == null ? null : new Date(Bytes.toLong(bytes));
 		}
 
-		public int getFetchInterval() {
+		public Integer getFetchInterval() {
 			byte[] bytes = cf.get(Bytes.toBytes("fi"));
 			return bytes == null ? null : Bytes.toInt(bytes);
 		}
 
-		public int getRetriesSinceFetch() {
+		public Integer getRetriesSinceFetch() {
 			byte[] bytes = cf.get(Bytes.toBytes("rsf"));
 			return bytes == null ? null : Bytes.toInt(bytes);
 		}
@@ -204,7 +207,7 @@ public class WebpageData {
 			return bytes == null ? null : Bytes.toString(bytes);
 		}
 
-		public byte getProtocolStatus() {
+		public Byte getProtocolStatus() {
 			byte[] bytes = cf.get(Bytes.toBytes("prot"));
 			return bytes == null ? null : bytes[0];
 		}
@@ -241,7 +244,7 @@ public class WebpageData {
 			this.cf = cf;
 		}
 
-		public float getScore() {
+		public Float getScore() {
 			byte[] bytes = cf.get(Bytes.toBytes("s"));
 			return bytes == null ? null : Bytes.toFloat(bytes);
 		}

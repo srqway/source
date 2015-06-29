@@ -133,7 +133,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<input id="rowKey" name="rowKey"
-								value='<c:out value="${rowKey}"></c:out>' type="text"
+								value='${rowKey}' type="text"
 								placeholder="" class="form-control" style="width: 800px;">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<button id="clearGet" type="button" class="btn btn-warning"
@@ -154,7 +154,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<input id="startRowKey" name="startRowKey"
-								value='<c:out value="${startRowKey}"></c:out>' type="text"
+								value='${startRowKey}' type="text"
 								placeholder="" class="form-control" style="width: 800px;">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>筆數
 								： </strong> <input id="pageSize" name="pageSize"
@@ -283,10 +283,10 @@
 										<td
 											style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
 											class='inline' href='#ol_${status.index}'>${v.ol.firstUrl}</a></td>
-										<td title='${status.mtdt.string}'
-											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${status.mtdt.string}</td>
-										<td title='${status.mk.string}'
-											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${status.mk.string}</td>
+										<td title='${v.mtdt.string}'
+											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.mtdt.string}</td>
+										<td title='${v.mk.string}'
+											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.mk.string}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
