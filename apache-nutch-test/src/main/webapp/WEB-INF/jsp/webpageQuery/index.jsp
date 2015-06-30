@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,14 +102,14 @@
 				event.preventDefault();
 			}
 		});
-		$(document).bind('cbox_load', function() {
-			setTimeout($.colorbox.next, 1500);
-		});
-		$(".inline").colorbox({
-			inline : true,
-			width : "80%",
-			transition : "none"
-		});
+// 		$(document).bind('cbox_load', function() {
+// 			setTimeout($.colorbox.next, 1500);
+// 		});
+// 		$(".inline").colorbox({
+// 			inline : true,
+// 			width : "80%",
+// 			transition : "none"
+// 		});
 
 	});
 </script>
@@ -245,7 +246,7 @@
 											style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
 											class='iframe'
 											href='<c:url value="getText"><c:param name="rowKey" value="${v.rowKey}" /></c:url>'>
-												<c:if test="${v.p.text != null}">text</c:if>
+												<c:if test="${fn:length(v.p.text) > 0}">text</c:if>
 										</a></td>
 										<td title='${v.p.parseStatus}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.p.parseStatus}</td>
@@ -276,7 +277,7 @@
 											style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
 											class='iframe'
 											href='<c:url value="getContent"><c:param name="rowKey" value="${v.rowKey}" /></c:url>'>
-												<c:if test="${v.f.content != null}">content</c:if>
+												<c:if test="${fn:length(v.f.content) > 0}">content</c:if>
 										</a></td>
 										<td title='${v.f.contentType}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.f.contentType}</td>
@@ -300,7 +301,10 @@
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.il.string}</td>
 										<td
 											style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
-											class='inline' href='#ol_${status.index}'>${v.ol.firstUrl}</a></td>
+											class='iframe'
+											href='<c:url value="getOutlinks"><c:param name="rowKey" value="${v.rowKey}" /></c:url>'>
+												<c:if test="${fn:length(v.ol.urlMap) > 0}">outlinks</c:if>
+										</a></td>
 										<td title='${v.mtdt.string}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.mtdt.string}</td>
 										<td title='${v.mk.string}'
@@ -325,29 +329,6 @@
 				</div>
 			</c:otherwise>
 		</c:choose>
-	</div>
-	<div style='display: none'>
-		<c:forEach var="v" varStatus="status" items="${entities}">
-			<div id='ol_${status.index}' style='padding: 10px; background: #fff;'>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th class="danger" colspan="2"><a href='${v.f.baseUrl}'
-								target="_blank">${v.f.baseUrl}</a></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="subV" varStatus="subStatus"
-							items="${v.ol.urlList}">
-							<tr>
-								<th class="info">${subStatus.index}</th>
-								<td class="active"><a href='${v}' target="_blank">${v}</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</c:forEach>
 	</div>
 </body>
 </html>

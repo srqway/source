@@ -2,6 +2,7 @@ package idv.hsiehpinghan.apachenutchtest.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -95,20 +96,34 @@ public class WebpageData {
 			return sb.toString();
 		}
 
-		public String getFirstUrl() {
-			for (Map.Entry<byte[], byte[]> ent : cf.entrySet()) {
-				return Bytes.toString(ent.getKey());
-			}
-			return null;
-		}
+//		public String getFirstUrl() {
+//			for (Map.Entry<byte[], byte[]> ent : cf.entrySet()) {
+//				return Bytes.toString(ent.getKey());
+//			}
+//			return null;
+//		}
 
-		public List<String> getUrlList() {
-			List<String> list = new ArrayList<String>();
+//		public List<String> getUrlList() {
+//			List<String> list = new ArrayList<String>();
+//			for (Map.Entry<byte[], byte[]> ent : cf.entrySet()) {
+//				String key = Bytes.toString(ent.getKey());
+//				list.add(key);
+//			}
+//			return list;
+//		}
+		
+		public Map<String, String> getUrlMap() {
+			Map<String, String> urlMap = new LinkedHashMap<String, String>(cf.size());
 			for (Map.Entry<byte[], byte[]> ent : cf.entrySet()) {
 				String key = Bytes.toString(ent.getKey());
-				list.add(key);
+				String value = Bytes.toString(ent.getValue());
+				urlMap.put(key, value);
 			}
-			return list;
+			
+			urlMap.put("aa", "11");
+			urlMap.put("bb", "22");
+			
+			return urlMap;
 		}
 	}
 
@@ -127,7 +142,6 @@ public class WebpageData {
 
 		public String getText() {
 			byte[] bytes = cf.get(Bytes.toBytes("c"));
-			bytes = new byte[]{'a', 'b'};
 			return bytes == null ? null : Bytes.toString(bytes);
 		}
 

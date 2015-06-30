@@ -78,4 +78,12 @@ public class WebpageQueryController {
 		model.addObject("entity", entity);
 		return model;
 	}
+	
+	@RequestMapping(value = "/getOutlinks", method = RequestMethod.GET)
+	public ModelAndView getOutlinks(@RequestParam String rowKey) {
+		WebpageData entity = manager.get(rowKey);
+		ModelAndView model = new ModelAndView("webpageQuery/outlinks");
+		model.addObject("entity", entity);
+		return model;
+	}
 }
