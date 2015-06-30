@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -61,4 +63,19 @@ public class WebpageQueryController {
 		return model;
 	}
 
+	@RequestMapping(value = "/getText", method = RequestMethod.GET)
+	public ModelAndView getText(@RequestParam String rowKey) {
+		WebpageData entity = manager.get(rowKey);
+		ModelAndView model = new ModelAndView("webpageQuery/text");
+		model.addObject("entity", entity);
+		return model;
+	}
+	
+	@RequestMapping(value = "/getContent", method = RequestMethod.GET)
+	public ModelAndView getContent(@RequestParam String rowKey) {
+		WebpageData entity = manager.get(rowKey);
+		ModelAndView model = new ModelAndView("webpageQuery/content");
+		model.addObject("entity", entity);
+		return model;
+	}
 }

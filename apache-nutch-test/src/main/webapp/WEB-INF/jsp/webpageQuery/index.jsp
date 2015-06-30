@@ -25,11 +25,14 @@
 	margin: 15px;
 }
 </style>
-<script src="/apache-nutch-test/javascript/jquery-2.1.4/jquery-2.1.4.min.js"></script>
-<script src="/apache-nutch-test/javascript/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script
+	src="/apache-nutch-test/javascript/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+<script
+	src="/apache-nutch-test/javascript/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
 <script
 	src="/apache-nutch-test/javascript/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
-<script src="/apache-nutch-test/javascript/colorbox-master/jquery.colorbox-min.js"></script>
+<script
+	src="/apache-nutch-test/javascript/colorbox-master/jquery.colorbox-min.js"></script>
 </head>
 <script type="text/javascript">
 	$(function() {
@@ -109,6 +112,11 @@
 
 	});
 </script>
+<script type="text/javascript">
+	$(function() {
+		$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+	});
+</script>
 <body>
 	<nav id="navheader" class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
@@ -120,8 +128,7 @@
 				</button>
 				<a href="javascript:void(0);" class="navbar-brand scan"
 					<c:if test='${queryType == null || queryType == "get"}'>style="display: none;"</c:if>><strong>Scan</strong>
-				</a>
-				<a href="javascript:void(0);" class="navbar-brand get"
+				</a> <a href="javascript:void(0);" class="navbar-brand get"
 					<c:if test='${queryType == "scan"}'>style="display: none;"</c:if>><strong>Get</strong>
 				</a>
 			</div>
@@ -132,8 +139,7 @@
 					<input type="hidden" name="queryType" value="get">
 					<div class="row">
 						<div class="col-xs-12">
-							<input id="rowKey" name="rowKey"
-								value='${rowKey}' type="text"
+							<input id="rowKey" name="rowKey" value='${rowKey}' type="text"
 								placeholder="" class="form-control" style="width: 800px;">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<button id="clearGet" type="button" class="btn btn-warning"
@@ -153,9 +159,9 @@
 					<input type="hidden" name="queryType" value="scan">
 					<div class="row">
 						<div class="col-xs-12">
-							<input id="startRowKey" name="startRowKey"
-								value='${startRowKey}' type="text"
-								placeholder="" class="form-control" style="width: 800px;">
+							<input id="startRowKey" name="startRowKey" value='${startRowKey}'
+								type="text" placeholder="" class="form-control"
+								style="width: 800px;">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>筆數
 								： </strong> <input id="pageSize" name="pageSize"
 								value='<c:out value="${pageSize}"></c:out>' type="text"
@@ -202,6 +208,7 @@
 									<th style="width: 1px;">#</th>
 									<th style="width: 30px;">Row Key</th>
 									<th style="width: 80px;">Title</th>
+									<th style="width: 30px;">Text</th>
 									<th style="width: 5px;">Parse Status</th>
 									<th style="width: 30px;">Signature</th>
 									<th style="width: 30px;">Prev Signature</th>
@@ -212,6 +219,7 @@
 									<th style="width: 5px;">Fetch Interval</th>
 									<th style="width: 30px;">Retries Since Fetch</th>
 									<th style="width: 30px;">Repr Url</th>
+									<th style="width: 30px;">Content</th>
 									<th style="width: 30px;">Content Type</th>
 									<th style="width: 5px;">Protocol Status</th>
 									<th style="width: 30px;">Modified Time</th>
@@ -234,12 +242,16 @@
 										<td title='${v.p.title}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.p.title}</td>
 										<td
-											title='${v.p.parseStatus}'
+											style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
+											class='iframe'
+											href='<c:url value="getText"><c:param name="rowKey" value="${v.rowKey}" /></c:url>'>
+												<c:if test="${v.p.text != null}">text</c:if>
+										</a></td>
+										<td title='${v.p.parseStatus}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.p.parseStatus}</td>
 										<td title='${v.p.signature}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.p.signature}</td>
-										<td
-											title='${v.p.prevSignature}'
+										<td title='${v.p.prevSignature}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.p.prevSignature}</td>
 										<td
 											style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
@@ -248,30 +260,36 @@
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.f.status}</td>
 										<td
 											title='<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${v.f.prevFetchTime}"/>'
-											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${v.f.prevFetchTime}"/></td>
+											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><fmt:formatDate
+												pattern="yyyy/MM/dd HH:mm:ss" value="${v.f.prevFetchTime}" /></td>
 										<td
 											title='<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${v.f.fetchTime}"/>'
-											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${v.f.fetchTime}"/></td>
-										<td
-											title='${v.f.fetchInterval}'
+											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><fmt:formatDate
+												pattern="yyyy/MM/dd HH:mm:ss" value="${v.f.fetchTime}" /></td>
+										<td title='${v.f.fetchInterval}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.f.fetchInterval}</td>
-										<td
-											title='${v.f.retriesSinceFetch}'
+										<td title='${v.f.retriesSinceFetch}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.f.retriesSinceFetch}</td>
 										<td title='${v.f.reprUrl}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.f.reprUrl}</td>
 										<td
-											title='${v.f.contentType}'
+											style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
+											class='iframe'
+											href='<c:url value="getContent"><c:param name="rowKey" value="${v.rowKey}" /></c:url>'>
+												<c:if test="${v.f.content != null}">content</c:if>
+										</a></td>
+										<td title='${v.f.contentType}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.f.contentType}</td>
-										<td
-											title='${v.f.protocolStatus}'
+										<td title='${v.f.protocolStatus}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.f.protocolStatus}</td>
 										<td
 											title='<fmt:formatDate pattern="yyyy/MM/dd" value="${v.f.modifiedTime}"/>'
-											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><fmt:formatDate pattern="yyyy/MM/dd" value="${v.f.modifiedTime}"/></td>
+											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><fmt:formatDate
+												pattern="yyyy/MM/dd" value="${v.f.modifiedTime}" /></td>
 										<td
 											title='<fmt:formatDate pattern="yyyy/MM/dd" value="${v.f.prevModifiedTime}"/>'
-											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><fmt:formatDate pattern="yyyy/MM/dd" value="${v.f.prevModifiedTime}"/></td>
+											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><fmt:formatDate
+												pattern="yyyy/MM/dd" value="${v.f.prevModifiedTime}" /></td>
 										<td title='${v.f.batchId}'
 											style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${v.f.batchId}</td>
 										<td title='${v.s.score}'
@@ -310,17 +328,17 @@
 	</div>
 	<div style='display: none'>
 		<c:forEach var="v" varStatus="status" items="${entities}">
-			<div id='ol_${status.index}'
-				style='padding: 10px; background: #fff;'>
+			<div id='ol_${status.index}' style='padding: 10px; background: #fff;'>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th class="danger" colspan="2"><a
-								href='${v.f.baseUrl}' target="_blank">${v.f.baseUrl}</a></th>
+							<th class="danger" colspan="2"><a href='${v.f.baseUrl}'
+								target="_blank">${v.f.baseUrl}</a></th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="subV" varStatus="subStatus" items="${v.ol.urlList}">
+						<c:forEach var="subV" varStatus="subStatus"
+							items="${v.ol.urlList}">
 							<tr>
 								<th class="info">${subStatus.index}</th>
 								<td class="active"><a href='${v}' target="_blank">${v}</a></td>

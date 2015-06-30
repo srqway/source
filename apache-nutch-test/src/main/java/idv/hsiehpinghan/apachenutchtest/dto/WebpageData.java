@@ -127,6 +127,7 @@ public class WebpageData {
 
 		public String getText() {
 			byte[] bytes = cf.get(Bytes.toBytes("c"));
+			bytes = new byte[]{'a', 'b'};
 			return bytes == null ? null : Bytes.toString(bytes);
 		}
 
