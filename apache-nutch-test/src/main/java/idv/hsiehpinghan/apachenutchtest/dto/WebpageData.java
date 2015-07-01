@@ -96,22 +96,6 @@ public class WebpageData {
 			return sb.toString();
 		}
 
-//		public String getFirstUrl() {
-//			for (Map.Entry<byte[], byte[]> ent : cf.entrySet()) {
-//				return Bytes.toString(ent.getKey());
-//			}
-//			return null;
-//		}
-
-//		public List<String> getUrlList() {
-//			List<String> list = new ArrayList<String>();
-//			for (Map.Entry<byte[], byte[]> ent : cf.entrySet()) {
-//				String key = Bytes.toString(ent.getKey());
-//				list.add(key);
-//			}
-//			return list;
-//		}
-		
 		public Map<String, String> getUrlMap() {
 			Map<String, String> urlMap = new LinkedHashMap<String, String>(cf.size());
 			for (Map.Entry<byte[], byte[]> ent : cf.entrySet()) {
@@ -119,10 +103,6 @@ public class WebpageData {
 				String value = Bytes.toString(ent.getValue());
 				urlMap.put(key, value);
 			}
-			
-			urlMap.put("aa", "11");
-			urlMap.put("bb", "22");
-			
 			return urlMap;
 		}
 	}
