@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
-<!-- Put site-specific property overrides in this file. -->
-
 <configuration>
 	<property>
 		<name>http.agent.name</name>
@@ -15,5 +13,9 @@
 	<property>
 		<name>plugin.folders</name>
 		<value>./src/plugin</value>
+	</property>
+	<property>
+		<name>fetcher.threads.fetch</name>
+		<value>1</value>
 	</property>
 </configuration>
