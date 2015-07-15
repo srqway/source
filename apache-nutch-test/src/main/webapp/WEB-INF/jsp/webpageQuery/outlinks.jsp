@@ -29,10 +29,10 @@
 						<th class="info" style="width: 30px;">${status.index}</th>
 						<td class="success"
 							style="width: 200px; cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
-							title="${v.key}">${v.key}</td>
+							title="${v.value}">${v.value}</td>
 						<td class="danger"
 							style="cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
-							title="${v.value}"><a href='${v.value}' target="_blank">${v.value}</a></td>
+							title="${v.key}"><a href='${v.key}' target="_blank">${v.key}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
