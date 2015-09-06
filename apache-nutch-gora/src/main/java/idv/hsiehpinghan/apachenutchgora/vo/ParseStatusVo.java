@@ -1,5 +1,7 @@
 package idv.hsiehpinghan.apachenutchgora.vo;
 
+import idv.hsiehpinghan.apachenutchgora.utility.CharSequenceUtility;
+
 import java.util.List;
 
 import org.apache.nutch.storage.ParseStatus;
@@ -7,7 +9,7 @@ import org.apache.nutch.storage.ParseStatus;
 public class ParseStatusVo {
 	private int majorCode;
 	private int minorCode;
-	private List<CharSequence> args;
+	private List<String> args;
 
 	private ParseStatusVo() {
 	}
@@ -16,7 +18,8 @@ public class ParseStatusVo {
 		ParseStatusVo vo = new ParseStatusVo();
 		vo.setMajorCode(parseStatus.getMajorCode());
 		vo.setMinorCode(parseStatus.getMinorCode());
-		vo.setArgs(parseStatus.getArgs());
+		vo.setArgs(CharSequenceUtility.convertToListString(parseStatus
+				.getArgs()));
 		return vo;
 	}
 
@@ -36,11 +39,11 @@ public class ParseStatusVo {
 		this.minorCode = minorCode;
 	}
 
-	public List<CharSequence> getArgs() {
+	public List<String> getArgs() {
 		return args;
 	}
 
-	public void setArgs(List<CharSequence> args) {
+	public void setArgs(List<String> args) {
 		this.args = args;
 	}
 

@@ -1,13 +1,23 @@
 package idv.hsiehpinghan.apachenutchgora.vo;
 
+import idv.hsiehpinghan.apachenutchgora.utility.CharSequenceUtility;
+import idv.hsiehpinghan.datetimeutility.utility.LocalDateTimeUtility;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.nutch.storage.ProtocolStatus;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ProtocolStatusVo {
 	private int code;
-	private List<CharSequence> args;
-	private long lastModified;
+	private List<String> args;
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
+	private LocalDateTime lastModified;
 
 	private ProtocolStatusVo() {
 	}
@@ -16,8 +26,10 @@ public class ProtocolStatusVo {
 			ProtocolStatus protocolStatus) {
 		ProtocolStatusVo vo = new ProtocolStatusVo();
 		vo.setCode(protocolStatus.getCode());
-		vo.setArgs(protocolStatus.getArgs());
-		vo.setLastModified(protocolStatus.getLastModified());
+		vo.setArgs(CharSequenceUtility.convertToListString(protocolStatus
+				.getArgs()));
+		vo.setLastModified(LocalDateTimeUtility.getLocalDateTime(protocolStatus
+				.getLastModified()));
 		return vo;
 	}
 
@@ -29,19 +41,19 @@ public class ProtocolStatusVo {
 		this.code = code;
 	}
 
-	public List<CharSequence> getArgs() {
+	public List<String> getArgs() {
 		return args;
 	}
 
-	public void setArgs(List<CharSequence> args) {
+	public void setArgs(List<String> args) {
 		this.args = args;
 	}
 
-	public long getLastModified() {
+	public LocalDateTime getLastModified() {
 		return lastModified;
 	}
 
-	public void setLastModified(long lastModified) {
+	public void setLastModified(LocalDateTime lastModified) {
 		this.lastModified = lastModified;
 	}
 

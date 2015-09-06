@@ -1,40 +1,54 @@
 package idv.hsiehpinghan.apachenutchgora.vo;
 
+import idv.hsiehpinghan.apachenutchgora.utility.ByteBufferUtility;
+import idv.hsiehpinghan.apachenutchgora.utility.CharSequenceUtility;
+import idv.hsiehpinghan.apachenutchgora.utility.MapUtility;
 import idv.hsiehpinghan.datetimeutility.utility.LocalDateTimeUtility;
 
-import java.nio.ByteBuffer;
 import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.apache.gora.query.Result;
 import org.apache.nutch.storage.WebPage;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class WebPageVo {
 	private String key;
-	private CharSequence baseUrl;
+	private String baseUrl;
 	private Integer status;
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private LocalDateTime prevFetchTime;
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private LocalDateTime fetchTime;
 	private Integer fetchInterval;
 	private Integer retriesSinceFetch;
-	private CharSequence reprUrl;
-	private ByteBuffer content;
-	private CharSequence contentType;
+	private String reprUrl;
+	private String content;
+	private String contentType;
 	private ProtocolStatusVo protocolStatusVo;
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private LocalDateTime modifiedTime;
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private LocalDateTime prevModifiedTime;
-	private CharSequence batchId;
-	private CharSequence title;
-	private CharSequence text;
+	private String batchId;
+	private String title;
+	private String text;
 	private ParseStatusVo parseStatusVo;
-	private ByteBuffer signature;
-	private ByteBuffer prevSignature;
+	private String signature;
+	private String prevSignature;
 	private Float score;
-	private Map<CharSequence, CharSequence> headers;
-	private Map<CharSequence, CharSequence> inlinks;
-	private Map<CharSequence, CharSequence> outlinks;
-	private Map<CharSequence, ByteBuffer> metadata;
-	private Map<CharSequence, CharSequence> markers;
+	private Map<String, String> headers;
+	private Map<String, String> inlinks;
+	private Map<String, String> outlinks;
+	private Map<String, String> metadata;
+	private Map<String, String> markers;
 
 	private WebPageVo() {
 	}
@@ -43,7 +57,7 @@ public class WebPageVo {
 		WebPageVo vo = new WebPageVo();
 		vo.setKey(result.getKey());
 		WebPage webPage = result.get();
-		vo.setBaseUrl(webPage.getBaseUrl());
+		vo.setBaseUrl(CharSequenceUtility.convertToString(webPage.getBaseUrl()));
 		vo.setStatus(webPage.getStatus());
 		LocalDateTime localDateTime = LocalDateTimeUtility
 				.getLocalDateTime(webPage.getPrevFetchTime());
@@ -53,9 +67,10 @@ public class WebPageVo {
 		vo.setFetchTime(fetchTime);
 		vo.setFetchInterval(webPage.getFetchInterval());
 		vo.setRetriesSinceFetch(webPage.getRetriesSinceFetch());
-		vo.setReprUrl(webPage.getReprUrl());
-		vo.setContent(webPage.getContent());
-		vo.setContentType(webPage.getContentType());
+		vo.setReprUrl(CharSequenceUtility.convertToString(webPage.getReprUrl()));
+		vo.setContent(ByteBufferUtility.convertToString(webPage.getContent()));
+		vo.setContentType(CharSequenceUtility.convertToString(webPage
+				.getContentType()));
 		ProtocolStatusVo protocolStatusVo = ProtocolStatusVo
 				.getProtocolStatusVo(webPage.getProtocolStatus());
 		vo.setProtocolStatusVo(protocolStatusVo);
@@ -65,20 +80,27 @@ public class WebPageVo {
 		LocalDateTime prevModifiedTime = LocalDateTimeUtility
 				.getLocalDateTime(webPage.getPrevModifiedTime());
 		vo.setPrevModifiedTime(prevModifiedTime);
-		vo.setBatchId(webPage.getBatchId());
-		vo.setTitle(webPage.getTitle());
-		vo.setText(webPage.getText());
+		vo.setBatchId(CharSequenceUtility.convertToString(webPage.getBatchId()));
+		vo.setTitle(CharSequenceUtility.convertToString(webPage.getTitle()));
+		vo.setText(CharSequenceUtility.convertToString(webPage.getText()));
 		ParseStatusVo parseStatusVo = ParseStatusVo.getParseStatusVo(webPage
 				.getParseStatus());
 		vo.setParseStatusVo(parseStatusVo);
-		vo.setSignature(webPage.getSignature());
-		vo.setPrevSignature(webPage.getPrevSignature());
+		vo.setSignature(ByteBufferUtility.convertToString(webPage
+				.getSignature()));
+		vo.setPrevSignature(ByteBufferUtility.convertToString(webPage
+				.getPrevSignature()));
 		vo.setScore(webPage.getScore());
-		vo.setHeaders(webPage.getHeaders());
-		vo.setInlinks(webPage.getInlinks());
-		vo.setOutlinks(webPage.getOutlinks());
-		vo.setMetadata(webPage.getMetadata());
-		vo.setMarkers(webPage.getMarkers());
+		vo.setHeaders(MapUtility.convertMapCharSequenceCharSequence(webPage
+				.getHeaders()));
+		vo.setInlinks(MapUtility.convertMapCharSequenceCharSequence(webPage
+				.getInlinks()));
+		vo.setOutlinks(MapUtility.convertMapCharSequenceCharSequence(webPage
+				.getOutlinks()));
+		vo.setMetadata(MapUtility.convertMapCharSequenceByteBuffer(webPage
+				.getMetadata()));
+		vo.setMarkers(MapUtility.convertMapCharSequenceCharSequence(webPage
+				.getMarkers()));
 		return vo;
 	}
 
@@ -90,11 +112,11 @@ public class WebPageVo {
 		this.key = key;
 	}
 
-	public CharSequence getBaseUrl() {
+	public String getBaseUrl() {
 		return baseUrl;
 	}
 
-	public void setBaseUrl(CharSequence baseUrl) {
+	public void setBaseUrl(String baseUrl) {
 		this.baseUrl = baseUrl;
 	}
 
@@ -138,27 +160,27 @@ public class WebPageVo {
 		this.retriesSinceFetch = retriesSinceFetch;
 	}
 
-	public CharSequence getReprUrl() {
+	public String getReprUrl() {
 		return reprUrl;
 	}
 
-	public void setReprUrl(CharSequence reprUrl) {
+	public void setReprUrl(String reprUrl) {
 		this.reprUrl = reprUrl;
 	}
 
-	public ByteBuffer getContent() {
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(ByteBuffer content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 
-	public CharSequence getContentType() {
+	public String getContentType() {
 		return contentType;
 	}
 
-	public void setContentType(CharSequence contentType) {
+	public void setContentType(String contentType) {
 		this.contentType = contentType;
 	}
 
@@ -186,27 +208,27 @@ public class WebPageVo {
 		this.prevModifiedTime = prevModifiedTime;
 	}
 
-	public CharSequence getBatchId() {
+	public String getBatchId() {
 		return batchId;
 	}
 
-	public void setBatchId(CharSequence batchId) {
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
 
-	public CharSequence getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(CharSequence title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public CharSequence getText() {
+	public String getText() {
 		return text;
 	}
 
-	public void setText(CharSequence text) {
+	public void setText(String text) {
 		this.text = text;
 	}
 
@@ -218,19 +240,19 @@ public class WebPageVo {
 		this.parseStatusVo = parseStatusVo;
 	}
 
-	public ByteBuffer getSignature() {
+	public String getSignature() {
 		return signature;
 	}
 
-	public void setSignature(ByteBuffer signature) {
+	public void setSignature(String signature) {
 		this.signature = signature;
 	}
 
-	public ByteBuffer getPrevSignature() {
+	public String getPrevSignature() {
 		return prevSignature;
 	}
 
-	public void setPrevSignature(ByteBuffer prevSignature) {
+	public void setPrevSignature(String prevSignature) {
 		this.prevSignature = prevSignature;
 	}
 
@@ -242,43 +264,43 @@ public class WebPageVo {
 		this.score = score;
 	}
 
-	public Map<CharSequence, CharSequence> getHeaders() {
+	public Map<String, String> getHeaders() {
 		return headers;
 	}
 
-	public void setHeaders(Map<CharSequence, CharSequence> headers) {
+	public void setHeaders(Map<String, String> headers) {
 		this.headers = headers;
 	}
 
-	public Map<CharSequence, CharSequence> getInlinks() {
+	public Map<String, String> getInlinks() {
 		return inlinks;
 	}
 
-	public void setInlinks(Map<CharSequence, CharSequence> inlinks) {
+	public void setInlinks(Map<String, String> inlinks) {
 		this.inlinks = inlinks;
 	}
 
-	public Map<CharSequence, CharSequence> getOutlinks() {
+	public Map<String, String> getOutlinks() {
 		return outlinks;
 	}
 
-	public void setOutlinks(Map<CharSequence, CharSequence> outlinks) {
+	public void setOutlinks(Map<String, String> outlinks) {
 		this.outlinks = outlinks;
 	}
 
-	public Map<CharSequence, ByteBuffer> getMetadata() {
+	public Map<String, String> getMetadata() {
 		return metadata;
 	}
 
-	public void setMetadata(Map<CharSequence, ByteBuffer> metadata) {
+	public void setMetadata(Map<String, String> metadata) {
 		this.metadata = metadata;
 	}
 
-	public Map<CharSequence, CharSequence> getMarkers() {
+	public Map<String, String> getMarkers() {
 		return markers;
 	}
 
-	public void setMarkers(Map<CharSequence, CharSequence> markers) {
+	public void setMarkers(Map<String, String> markers) {
 		this.markers = markers;
 	}
 
