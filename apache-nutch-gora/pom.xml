@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>idv.hsiehpinghan</groupId>
-  <artifactId>apache-nutch-gora</artifactId>
-  <packaging>war</packaging>
-  <version>1.0.0</version>
-  <name>apache-nutch-gora Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>idv.hsiehpinghan</groupId>
+	<artifactId>apache-nutch-gora</artifactId>
+	<packaging>war</packaging>
+	<version>1.0.0</version>
+	<name>apache-nutch-gora Maven Webapp</name>
+	<url>http://maven.apache.org</url>
 	<build>
 		<finalName>apache-nutch-gora</finalName>
 		<plugins>
@@ -32,8 +32,10 @@
 		<spring.version>4.1.2.RELEASE</spring.version>
 		<jstl.version>1.2</jstl.version>
 		<tomcat-servlet-api.version>7.0.61</tomcat-servlet-api.version>
+		<jackson.version>2.6.1</jackson.version>
 		<nutch.version>2.3</nutch.version>
 		<gora.version>0.5</gora.version>
+		<datetime-utility.version>1.0.0</datetime-utility.version>
 	</properties>
 
 	<dependencies>
@@ -81,6 +83,13 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
 		<!-- nutch -->
 		<dependency>
 			<groupId>org.apache.nutch</groupId>
@@ -123,6 +132,13 @@
 					<groupId>tomcat</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<!-- datetime-utility -->
+		<dependency>
+			<groupId>idv.hsiehpinghan</groupId>
+			<artifactId>datetime-utility</artifactId>
+			<version>${datetime-utility.version}</version>
 		</dependency>
 	</dependencies>
 </project>
