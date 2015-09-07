@@ -31,8 +31,8 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/index.html").addResourceLocations("/");
 		registry.addResourceHandler("/image/**")
 				.addResourceLocations("/image/");
-		registry.addResourceHandler("/javascript/**").addResourceLocations(
-				"/javascript/");
+		registry.addResourceHandler("/bower_components/**").addResourceLocations(
+				"/bower_components/");
 	}
 
 	@Bean
