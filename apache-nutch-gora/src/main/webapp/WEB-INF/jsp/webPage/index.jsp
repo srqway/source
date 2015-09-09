@@ -46,7 +46,7 @@ td {
 								<th title='key'>key</th>
 								<th style="width: 300px;" title='title'>title</th>
 								<th style="width: 300px;" title='base url'>base url</th>
-								<th style="width: 50px;" title='status'>status</th>
+								<th style="width: 50px;" title='status'>crawl status</th>
 								<th title='prev fetch time'>prev fetch time</th>
 								<th title='fetch time'>fetch time</th>
 								<th title='fetch interval'>fetch interval</th>
@@ -75,7 +75,7 @@ td {
 								<td style="max-width: 100px; min-width: 100px;" style="max-width: 100px; min-width: 100px;" title='{{webPageVo.key}}'>{{webPageVo.key}}</td>
 								<td style="max-width: 300px; min-width: 300px;" title='{{webPageVo.title}}'>{{webPageVo.title}}</td>
 								<td style="max-width: 500px; min-width: 500px;" title='{{webPageVo.baseUrl}}'>{{webPageVo.baseUrl}}</td>
-								<td style="max-width: 50px; min-width: 50px;" title='{{webPageVo.status}}'>{{webPageVo.status}}</td>
+								<td style="max-width: 150px; min-width: 150px;" title='{{webPageVo.crawlStatus}}'>{{webPageVo.crawlStatus}}</td>
 								<td style="max-width: 200px; min-width: 200px;" title='{{webPageVo.prevFetchTime}}'>{{webPageVo.prevFetchTime}}</td>
 								<td style="max-width: 200px; min-width: 200px;" title='{{webPageVo.fetchTime}}'>{{webPageVo.fetchTime}}</td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.fetchInterval}}'>{{webPageVo.fetchInterval}}</td>

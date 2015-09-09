@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class WebPageVo {
 	private String key;
 	private String baseUrl;
-	private Integer status;
+	private String crawlStatus;
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private LocalDateTime prevFetchTime;
@@ -58,7 +58,7 @@ public class WebPageVo {
 		vo.setKey(result.getKey());
 		WebPage webPage = result.get();
 		vo.setBaseUrl(CharSequenceUtility.convertToString(webPage.getBaseUrl()));
-		vo.setStatus(webPage.getStatus());
+		vo.setCrawlStatus(convertToCrawlStatus(webPage.getStatus()));
 		LocalDateTime localDateTime = LocalDateTimeUtility
 				.getLocalDateTime(webPage.getPrevFetchTime());
 		vo.setPrevFetchTime(localDateTime);
@@ -120,12 +120,12 @@ public class WebPageVo {
 		this.baseUrl = baseUrl;
 	}
 
-	public Integer getStatus() {
-		return status;
+	public String getCrawlStatus() {
+		return crawlStatus;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setCrawlStatus(String crawlStatus) {
+		this.crawlStatus = crawlStatus;
 	}
 
 	public LocalDateTime getPrevFetchTime() {
@@ -304,4 +304,24 @@ public class WebPageVo {
 		this.markers = markers;
 	}
 
+	private static String convertToCrawlStatus(Integer status) {
+		switch (status) {
+		case 1:
+			return "STATUS_UNFETCHED";
+		case 2:
+			return "STATUS_FETCHED";
+		case 3:
+			return "STATUS_GONE";
+		case 4:
+			return "STATUS_REDIR_TEMP";
+		case 5:
+			return "STATUS_REDIR_PERM";
+		case 22:
+			return "STATUS_RETRY";
+		case 26:
+			return "STATUS_NOTMODIFIED";
+		default:
+			throw new RuntimeException("Status(" + status + ") undefined !!!");
+		}
+	}
 }
