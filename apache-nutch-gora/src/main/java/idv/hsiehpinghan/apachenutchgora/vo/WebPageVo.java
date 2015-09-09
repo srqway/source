@@ -3,6 +3,7 @@ package idv.hsiehpinghan.apachenutchgora.vo;
 import idv.hsiehpinghan.apachenutchgora.utility.ByteBufferUtility;
 import idv.hsiehpinghan.apachenutchgora.utility.CharSequenceUtility;
 import idv.hsiehpinghan.apachenutchgora.utility.MapUtility;
+import idv.hsiehpinghan.datetimeutility.utility.DateUtility;
 import idv.hsiehpinghan.datetimeutility.utility.LocalDateTimeUtility;
 
 import java.time.LocalDateTime;
@@ -25,7 +26,7 @@ public class WebPageVo {
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private LocalDateTime fetchTime;
-	private Integer fetchInterval;
+	private String fetchInterval;
 	private Integer retriesSinceFetch;
 	private String reprUrl;
 	private String content;
@@ -65,7 +66,7 @@ public class WebPageVo {
 		LocalDateTime fetchTime = LocalDateTimeUtility.getLocalDateTime(webPage
 				.getFetchTime());
 		vo.setFetchTime(fetchTime);
-		vo.setFetchInterval(webPage.getFetchInterval());
+		vo.setFetchInterval(convertToFetchInterval(webPage.getFetchInterval()));
 		vo.setRetriesSinceFetch(webPage.getRetriesSinceFetch());
 		vo.setReprUrl(CharSequenceUtility.convertToString(webPage.getReprUrl()));
 		vo.setContent(ByteBufferUtility.convertToString(webPage.getContent()));
@@ -144,11 +145,11 @@ public class WebPageVo {
 		this.fetchTime = fetchTime;
 	}
 
-	public Integer getFetchInterval() {
+	public String getFetchInterval() {
 		return fetchInterval;
 	}
 
-	public void setFetchInterval(Integer fetchInterval) {
+	public void setFetchInterval(String fetchInterval) {
 		this.fetchInterval = fetchInterval;
 	}
 
@@ -305,6 +306,9 @@ public class WebPageVo {
 	}
 
 	private static String convertToCrawlStatus(Integer status) {
+		if (status == null) {
+			return null;
+		}
 		switch (status) {
 		case 1:
 			return "STATUS_UNFETCHED";
@@ -323,5 +327,16 @@ public class WebPageVo {
 		default:
 			throw new RuntimeException("Status(" + status + ") undefined !!!");
 		}
+	}
+	
+	private static String convertToFetchInterval(Integer fetchInterval) {
+		long remain = 0;
+		long day = fetchInterval / DateUtility.DAY_SECONDS;
+		remain = fetchInterval % DateUtility.DAY_SECONDS;
+		long hour = remain / DateUtility.HOUR_SECONDS;
+		remain = remain % DateUtility.HOUR_SECONDS;
+		long minute = remain / DateUtility.MINUTE_SECONDS;
+		long second = remain % DateUtility.MINUTE_SECONDS;
+		return String.format("% 3d % 2d:% 2d:% 2d", day, hour, minute, second);
 	}
 }

@@ -15,6 +15,9 @@ public class ParseStatusVo {
 	}
 
 	public static ParseStatusVo getParseStatusVo(ParseStatus parseStatus) {
+		if (parseStatus == null) {
+			return null;
+		}
 		ParseStatusVo vo = new ParseStatusVo();
 		vo.setMajorStatus(convertToMajorStatus(parseStatus.getMajorCode()));
 		vo.setMinorStatus(convertToMinorStatus(parseStatus.getMinorCode()));
@@ -48,6 +51,9 @@ public class ParseStatusVo {
 	}
 
 	private static String convertToMajorStatus(Integer majorCode) {
+		if (majorCode == null) {
+			return null;
+		}
 		switch (majorCode) {
 		case 0:
 			return "NOTPARSED";
@@ -62,6 +68,9 @@ public class ParseStatusVo {
 	}
 
 	private static String convertToMinorStatus(Integer minorCode) {
+		if (minorCode == null) {
+			return null;
+		}
 		switch (minorCode) {
 		case 0:
 			return "SUCCESS_OK";

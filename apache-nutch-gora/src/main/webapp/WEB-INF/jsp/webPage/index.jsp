@@ -27,11 +27,12 @@ td {
 					<form class="form-horizontal" role="form">
 						<div class="row">
 							<div class="col-xs-8">
-								<input type="text" class="form-control" name="startKey" data-ng-model="criteria.startKey"
-									placeholder="start key">
+								<input type="text" class="form-control" name="startKey" placeholder="start key" 
+									data-ng-model="criteria.startKey">
 							</div>
 							<div class="col-xs-2">
-								<input type="number" class="form-control" name="limit" data-ng-model="criteria.limit" />
+								<input type="number" class="form-control" name="limit" placeholder="limit"
+									data-ng-model="criteria.limit" />
 							</div>
 							<div class="col-xs-2">
 								<input type="submit" class="btn btn-success" value="submit" data-ng-click="submit()" />

@@ -24,6 +24,9 @@ public class ProtocolStatusVo {
 
 	public static ProtocolStatusVo getProtocolStatusVo(
 			ProtocolStatus protocolStatus) {
+		if (protocolStatus == null) {
+			return null;
+		}
 		ProtocolStatusVo vo = new ProtocolStatusVo();
 		vo.setStatus(convertToStatus(protocolStatus.getCode()));
 		vo.setArgs(CharSequenceUtility.convertToListString(protocolStatus
@@ -58,6 +61,9 @@ public class ProtocolStatusVo {
 	}
 
 	private static String convertToStatus(Integer code) {
+		if (code == null) {
+			return null;
+		}
 		switch (code) {
 		case 1:
 			return "SUCCESS";
