@@ -1,8 +1,8 @@
 package idv.hsiehpinghan.apachenutchgora.criteria;
 
 public class WebPageCriteria {
-	private String startKey = "";
-	private long limit = 1;
+	private String startKey;
+	private long limit;
 
 	public String getStartKey() {
 		return startKey;
