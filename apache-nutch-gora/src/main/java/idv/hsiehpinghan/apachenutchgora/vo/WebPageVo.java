@@ -310,6 +310,8 @@ public class WebPageVo {
 			return null;
 		}
 		switch (status) {
+		case 0:
+			return null;
 		case 1:
 			return "STATUS_UNFETCHED";
 		case 2:
