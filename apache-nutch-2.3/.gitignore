@@ -1,4 +1,3 @@
-.settings/
-logs/
-build/
-runtime/
+/runtime/
+/build/
+/hadoop.log
