@@ -1,6 +1,7 @@
 package idv.hsiehpinghan.apachenutchgora.utility;
 
 import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 
 public class ByteBufferUtility {
 
@@ -8,6 +9,6 @@ public class ByteBufferUtility {
 		if (byteBuffer == null) {
 			return null;
 		}
-		return new String(byteBuffer.array());
+		return new String(byteBuffer.array(), Charset.forName("utf-8"));
 	}
 }

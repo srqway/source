@@ -82,7 +82,9 @@ td {
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.fetchInterval}}'>{{webPageVo.fetchInterval}}</td>
 								<td style="max-width: 50px; min-width: 50px;" title='{{webPageVo.retriesSinceFetch}}'>{{webPageVo.retriesSinceFetch}}</td>
 								<td style="max-width: 500px; min-width: 500px;" title='{{webPageVo.reprUrl}}'>{{webPageVo.reprUrl}}</td>
-								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.content}}'>{{webPageVo.content}}</td>
+								
+								<td style="max-width: 100px; min-width: 100px;"><a data-ng-href="queryContent?key={{webPageVo.key}}" target="_blank">view</a></td>
+								
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.contentType}}'>{{webPageVo.contentType}}</td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.protocolStatusVo | json}}'>{{webPageVo.protocolStatusVo | json}}</td>
 								<td style="max-width: 200px; min-width: 200px;" title='{{webPageVo.modifiedTime}}'>{{webPageVo.modifiedTime}}</td>

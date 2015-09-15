@@ -12,15 +12,18 @@ public class WebPageRepository {
 	@Autowired
 	private DataStore<String, WebPage> dataStore;
 
-	public Result<String, WebPage> query(String key) {
+	public Result<String, WebPage> query(String key, String[] fields) {
 		Query<String, WebPage> query = dataStore.newQuery();
 		query.setKey(key);
+		query.setFields(fields);
 		return query.execute();
 	}
 
-	public Result<String, WebPage> query(String startKey, long limit) {
+	public Result<String, WebPage> query(String startKey, String[] fields,
+			long limit) {
 		Query<String, WebPage> query = dataStore.newQuery();
 		query.setStartKey(startKey);
+		query.setFields(fields);
 		query.setLimit(limit);
 		return query.execute();
 	}
