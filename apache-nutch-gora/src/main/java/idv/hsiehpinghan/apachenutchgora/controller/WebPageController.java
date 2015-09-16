@@ -6,6 +6,7 @@ import idv.hsiehpinghan.apachenutchgora.vo.WebPageVo;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class WebPageController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/query", method = RequestMethod.GET)
+	@RequestMapping(value = "/query", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	public List<WebPageVo> query(WebPageCriteria criteria) throws IOException,
 			Exception {
 		String startKey = criteria.getStartKey();
@@ -38,15 +39,30 @@ public class WebPageController {
 	public String queryContent(WebPageCriteria criteria) throws IOException,
 			Exception {
 		String key = criteria.getKey();
-		return service.queryContent(key);	                       
+		return service.queryContent(key);
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/queryText", method = RequestMethod.GET)
+	@RequestMapping(value = "/queryText", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String queryText(WebPageCriteria criteria) throws IOException,
 			Exception {
 		String key = criteria.getKey();
 		return service.queryText(key);
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/queryOutlinks", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public Map<String, String> queryOutlinks(WebPageCriteria criteria)
+			throws IOException, Exception {
+		String key = criteria.getKey();
+		return service.queryOutlinks(key);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/queryInlinks", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public Map<String, String> queryInlinks(WebPageCriteria criteria)
+			throws IOException, Exception {
+		String key = criteria.getKey();
+		return service.queryInlinks(key);
+	}
 }

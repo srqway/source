@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.gora.query.Result;
@@ -18,6 +19,18 @@ import org.springframework.stereotype.Service;
 public class WebPageService {
 	@Autowired
 	private WebPageRepository repository;
+
+	public List<WebPageVo> query(String startKey, long limit)
+			throws IOException, Exception {
+		Set<WebPage.Field> fields = generateQueryFields();
+		Result<String, WebPage> result = repository.query(startKey,
+				convertToStringArray(fields), limit);
+		List<WebPageVo> webPageVos = new ArrayList<WebPageVo>();
+		while (result.next()) {
+			webPageVos.add(WebPageVo.generateWebPageVo(result));
+		}
+		return webPageVos;
+	}
 
 	public String queryContent(String key) throws IOException, Exception {
 		Set<WebPage.Field> fields = generateQueryContentFields();
@@ -39,24 +52,26 @@ public class WebPageService {
 		return null;
 	}
 
-	public List<WebPageVo> query(String startKey, long limit)
-			throws IOException, Exception {
-		Set<WebPage.Field> fields = generateQueryFields();
-		Result<String, WebPage> result = repository.query(startKey,
-				convertToStringArray(fields), limit);
-		List<WebPageVo> webPageVos = new ArrayList<WebPageVo>();
+	public Map<String, String> queryOutlinks(String key) throws IOException,
+			Exception {
+		Set<WebPage.Field> fields = generateQueryOutlinksFields();
+		Result<String, WebPage> result = repository.query(key,
+				convertToStringArray(fields));
 		while (result.next()) {
-			webPageVos.add(WebPageVo.generateWebPageVo(result));
+			return WebPageVo.generateWebPageVo(result).getOutlinks();
 		}
-		return webPageVos;
+		return null;
 	}
 
-	private String[] convertToStringArray(Set<WebPage.Field> fields) {
-		return fields.stream().map((t) -> {
-			return t.getName();
-		}).toArray((size) -> {
-			return new String[size];
-		});
+	public Map<String, String> queryInlinks(String key) throws IOException,
+			Exception {
+		Set<WebPage.Field> fields = generateQueryInlinksFields();
+		Result<String, WebPage> result = repository.query(key,
+				convertToStringArray(fields));
+		while (result.next()) {
+			return WebPageVo.generateWebPageVo(result).getInlinks();
+		}
+		return null;
 	}
 
 	private Set<WebPage.Field> generateQueryFields() {
@@ -70,10 +85,12 @@ public class WebPageService {
 		fields.add(WebPage.Field.MODIFIED_TIME);
 		fields.add(WebPage.Field.PREV_MODIFIED_TIME);
 		fields.add(WebPage.Field.PROTOCOL_STATUS);
+		fields.add(WebPage.Field.CONTENT);
 		fields.add(WebPage.Field.CONTENT_TYPE);
 		fields.add(WebPage.Field.PREV_SIGNATURE);
 		fields.add(WebPage.Field.SIGNATURE);
 		fields.add(WebPage.Field.TITLE);
+		fields.add(WebPage.Field.TEXT);
 		fields.add(WebPage.Field.PARSE_STATUS);
 		fields.add(WebPage.Field.SCORE);
 		fields.add(WebPage.Field.REPR_URL);
@@ -96,5 +113,25 @@ public class WebPageService {
 		Set<WebPage.Field> fields = new HashSet<WebPage.Field>();
 		fields.add(WebPage.Field.TEXT);
 		return fields;
+	}
+
+	private Set<WebPage.Field> generateQueryOutlinksFields() {
+		Set<WebPage.Field> fields = new HashSet<WebPage.Field>();
+		fields.add(WebPage.Field.OUTLINKS);
+		return fields;
+	}
+
+	private Set<WebPage.Field> generateQueryInlinksFields() {
+		Set<WebPage.Field> fields = new HashSet<WebPage.Field>();
+		fields.add(WebPage.Field.INLINKS);
+		return fields;
+	}
+
+	private String[] convertToStringArray(Set<WebPage.Field> fields) {
+		return fields.stream().map((t) -> {
+			return t.getName();
+		}).toArray((size) -> {
+			return new String[size];
+		});
 	}
 }

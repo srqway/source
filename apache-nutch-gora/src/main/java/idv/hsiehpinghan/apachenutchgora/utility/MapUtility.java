@@ -7,6 +7,9 @@ import java.util.Map;
 public class MapUtility {
 	public static Map<String, String> convertMapCharSequenceCharSequence(
 			Map<CharSequence, CharSequence> map) {
+		if(map == null) {
+			return null;
+		}
 		Map<String, String> result = new LinkedHashMap<String, String>(
 				map.size());
 		for (Map.Entry<CharSequence, CharSequence> ent : map.entrySet()) {
@@ -19,6 +22,9 @@ public class MapUtility {
 
 	public static Map<String, String> convertMapCharSequenceByteBuffer(
 			Map<CharSequence, ByteBuffer> map) {
+		if(map == null) {
+			return null;
+		}
 		Map<String, String> result = new LinkedHashMap<String, String>(
 				map.size());
 		for (Map.Entry<CharSequence, ByteBuffer> ent : map.entrySet()) {

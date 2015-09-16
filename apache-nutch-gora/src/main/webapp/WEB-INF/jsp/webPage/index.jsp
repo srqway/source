@@ -40,21 +40,21 @@ td {
 						</div>
 					</form>
 				</div>
-				<div class="panel-body table-responsive">
+				<div class="panel-body table-responsive" style="height: 700px;">
 					<table class="table" data-ng-show="webPageVos != null">
 						<thead>
 							<tr>
 								<th title='key'>key</th>
 								<th style="width: 50px;" title='status'>crawl status</th>
-								<th style="width: 300px;" title='title'>title</th>
+								<th title='content type'>content type</th>
+								<th title='content'>content</th>
+								<th title='inlinks'>inlinks</th>
 								<th style="width: 300px;" title='base url'>base url</th>
 								<th title='prev fetch time'>prev fetch time</th>
 								<th title='fetch time'>fetch time</th>
 								<th title='fetch interval'>fetch interval</th>
 								<th title='retries since fetch'>retries since fetch</th>
 								<th title='repr url'>repr url</th>
-								<th title='content'>content</th>
-								<th title='content type'>content type</th>
 								<th title='protocol status'>protocol status</th>
 								<th title='modified time'>modified time</th>
 								<th title='prev modified time'>prev modified time</th>
@@ -65,39 +65,39 @@ td {
 								<th title='prev signature'>prev signature</th>
 								<th title='score'>score</th>
 								<th title='headers'>headers</th>
-								<th title='inlinks'>inlinks</th>
 								<th title='outlinks'>outlinks</th>
 								<th title='metadata'>metadata</th>
 								<th title='markers'>markers</th>
+								<th style="width: 300px;" title='title'>title</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr data-ng-repeat="webPageVo in webPageVos">
 								<td style="max-width: 100px; min-width: 100px;" style="max-width: 100px; min-width: 100px;" title='{{webPageVo.key}}'>{{webPageVo.key}}</td>
 								<td style="max-width: 150px; min-width: 150px;" title='{{webPageVo.crawlStatus}}'>{{webPageVo.crawlStatus}}</td>
-								<td style="max-width: 300px; min-width: 300px;" title='{{webPageVo.title}}'>{{webPageVo.title}}</td>
-								<td style="max-width: 500px; min-width: 500px;" title='{{webPageVo.baseUrl}}'>{{webPageVo.baseUrl}}</td>
+								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.contentType}}'>{{webPageVo.contentType}}</td>
+								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.content}}'><a data-ng-href="queryContent?key={{webPageVo.key}}" target="_blank" data-ng-show="webPageVo.content != null">view</a></td>
+								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.inlinks | json}}'><a data-ng-href="queryInlinks?key={{webPageVo.key}}" target="_blank" data-ng-show="getLength(webPageVo.inlinks) > 0">view</a></td>
+								<td style="max-width: 500px; min-width: 500px;" title='{{webPageVo.baseUrl}}'><a data-ng-href="{{webPageVo.baseUrl}}" target="_blank" data-ng-show="webPageVo.content != null">{{webPageVo.baseUrl}}</a></td>
 								<td style="max-width: 200px; min-width: 200px;" title='{{webPageVo.prevFetchTime}}'>{{webPageVo.prevFetchTime}}</td>
 								<td style="max-width: 200px; min-width: 200px;" title='{{webPageVo.fetchTime}}'>{{webPageVo.fetchTime}}</td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.fetchInterval}}'>{{webPageVo.fetchInterval}}</td>
 								<td style="max-width: 50px; min-width: 50px;" title='{{webPageVo.retriesSinceFetch}}'>{{webPageVo.retriesSinceFetch}}</td>
 								<td style="max-width: 500px; min-width: 500px;" title='{{webPageVo.reprUrl}}'>{{webPageVo.reprUrl}}</td>								
-								<td style="max-width: 100px; min-width: 100px;"><a data-ng-href="queryContent?key={{webPageVo.key}}">view</a></td>
-								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.contentType}}'>{{webPageVo.contentType}}</td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.protocolStatusVo | json}}'>{{webPageVo.protocolStatusVo | json}}</td>
 								<td style="max-width: 200px; min-width: 200px;" title='{{webPageVo.modifiedTime}}'>{{webPageVo.modifiedTime}}</td>
 								<td style="max-width: 200px; min-width: 200px;" title='{{webPageVo.prevModifiedTime}}'>{{webPageVo.prevModifiedTime}}</td>
 								<td style="max-width: 200px; min-width: 200px;" title='{{webPageVo.batchId}}'>{{webPageVo.batchId}}</td>
-								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.text}}'>{{webPageVo.text}}</td>
+								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.text}}'><a data-ng-href="queryText?key={{webPageVo.key}}" target="_blank" data-ng-show="webPageVo.text != null">view</a></td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.parseStatusVo | json}}'>{{webPageVo.parseStatusVo | json}}</td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.signature}}'>{{webPageVo.signature}}</td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.prevSignature}}'>{{webPageVo.prevSignature}}</td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.score}}'>{{webPageVo.score}}</td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.headers | json}}'>{{webPageVo.headers | json}}</td>
-								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.inlinks | json}}'>{{webPageVo.inlinks | json}}</td>
-								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.outlinks | json}}'>{{webPageVo.outlinks | json}}</td>
+								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.outlinks | json}}'><a data-ng-href="queryOutlinks?key={{webPageVo.key}}" target="_blank" data-ng-show="getLength(webPageVo.outlinks) > 0">view</a></td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.metadata | json}}'>{{webPageVo.metadata | json}}</td>
 								<td style="max-width: 100px; min-width: 100px;" title='{{webPageVo.markers | json}}'>{{webPageVo.markers | json}}</td>
+								<td style="max-width: 300px; min-width: 300px;" title='{{webPageVo.title}}'>{{webPageVo.title}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -119,7 +119,9 @@ td {
 		.controller('MyController', ['$scope', '$http', function($scope, $http) {
 			$scope.criteria = {};
 			$scope.criteria.limit = 1;
-
+			$scope.getLength = function(obj) {
+			    return Object.keys(obj).length;
+			}
 			$scope.submit = function() {
 				var config = {
 					method : 'GET',
