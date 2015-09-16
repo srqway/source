@@ -34,11 +34,11 @@ public class WebPageController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/queryContent", method = RequestMethod.GET)
+	@RequestMapping(value = "/queryContent", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	public String queryContent(WebPageCriteria criteria) throws IOException,
 			Exception {
 		String key = criteria.getKey();
-		return service.queryContent(key);
+		return service.queryContent(key);	                       
 	}
 
 	@ResponseBody

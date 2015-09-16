@@ -1,8 +1,6 @@
 package idv.hsiehpinghan.apachenutchgora.service;
 
 import idv.hsiehpinghan.apachenutchgora.repository.WebPageRepository;
-import idv.hsiehpinghan.apachenutchgora.utility.ByteBufferUtility;
-import idv.hsiehpinghan.apachenutchgora.utility.CharSequenceUtility;
 import idv.hsiehpinghan.apachenutchgora.vo.WebPageVo;
 
 import java.io.IOException;
@@ -26,7 +24,7 @@ public class WebPageService {
 		Result<String, WebPage> result = repository.query(key,
 				convertToStringArray(fields));
 		while (result.next()) {
-			return ByteBufferUtility.convertToString(result.get().getContent());
+			return WebPageVo.generateWebPageVo(result).getContent();
 		}
 		return null;
 	}
@@ -36,7 +34,7 @@ public class WebPageService {
 		Result<String, WebPage> result = repository.query(key,
 				convertToStringArray(fields));
 		while (result.next()) {
-			return CharSequenceUtility.convertToString(result.get().getText());
+			return WebPageVo.generateWebPageVo(result).getText();
 		}
 		return null;
 	}
