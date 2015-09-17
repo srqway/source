@@ -312,19 +312,19 @@ public class WebPageVo {
 		switch (status) {
 		case 0:
 			return null;
-		case 1:
+		case 0x01:
 			return "STATUS_UNFETCHED";
-		case 2:
+		case 0x02:
 			return "STATUS_FETCHED";
-		case 3:
+		case 0x03:
 			return "STATUS_GONE";
-		case 4:
+		case 0x04:
 			return "STATUS_REDIR_TEMP";
-		case 5:
+		case 0x05:
 			return "STATUS_REDIR_PERM";
-		case 22:
+		case 0x22:
 			return "STATUS_RETRY";
-		case 26:
+		case 0x26:
 			return "STATUS_NOTMODIFIED";
 		default:
 			throw new RuntimeException("Status(" + status + ") undefined !!!");

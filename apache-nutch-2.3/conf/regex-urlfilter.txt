@@ -36,7 +36,12 @@
 #-.*(/[^/]+)/[^/]+\1/[^/]+\1/
 
 # skip web page query
--.*/apache-nutch-test/webpageQuery/*
+#-.*/apache-nutch-test/webpageQuery/*
 
 # accept anything else
-+.
+#+.
+
+
++^http://mops.twse.com.tw/mops/web/t51sb01$
++^http://mops.twse.com.tw/mops/web/ajax_t51sb01*
+-.
