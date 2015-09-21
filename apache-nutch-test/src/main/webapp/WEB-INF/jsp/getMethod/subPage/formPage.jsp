@@ -5,14 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>get method</title>
+<title>form page</title>
 </head>
 <body>
-	Get Method Page.<br>
-	<a href="subPage/subPage1">sub page 1</a><br>
-	<a href="subPage/subPage2">sub page 2</a><br>
-	<form action="subPage/formPage">
-		<input type="submit">
-	</form>
+	Form page.<br>
 </body>
 </html>

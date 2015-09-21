@@ -22,4 +22,8 @@ public class GetMethodController {
 		return "getMethod/subPage/subPage2";
 	}
 	
+	@RequestMapping(value = "/subPage/formPage", method = RequestMethod.GET)
+	public String formPage() {
+		return "getMethod/subPage/formPage";
+	}
 }
