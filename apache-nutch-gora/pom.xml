@@ -100,12 +100,57 @@
 			<groupId>org.apache.nutch</groupId>
 			<artifactId>nutch</artifactId>
 			<version>${nutch.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jetty</artifactId>
+					<groupId>org.mortbay.jetty</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jetty-util</artifactId>
+					<groupId>org.mortbay.jetty</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- gora -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.gora</groupId> -->
+<!-- 			<artifactId>gora-hbase</artifactId> -->
+<!-- 			<version>${gora.version}</version> -->
+<!-- 			<exclusions> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jsp-2.1</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jsp-api-2.1</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>servlet-api-2.5</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jetty</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jetty-util</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jasper-compiler</artifactId> -->
+<!-- 					<groupId>tomcat</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jasper-runtime</artifactId> -->
+<!-- 					<groupId>tomcat</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.apache.gora</groupId>
-			<artifactId>gora-hbase</artifactId>
+			<artifactId>gora-mongodb</artifactId>
 			<version>${gora.version}</version>
 			<exclusions>
 				<exclusion>
@@ -138,7 +183,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+		
 		<!-- datetime-utility -->
 		<dependency>
 			<groupId>idv.hsiehpinghan</groupId>
