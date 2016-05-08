@@ -34,7 +34,7 @@
 		<tomcat-servlet-api.version>7.0.61</tomcat-servlet-api.version>
 		<jackson.version>2.6.1</jackson.version>
 		<nutch.version>2.3</nutch.version>
-		<gora.version>0.5</gora.version>
+		<gora.version>0.6.1</gora.version>
 		<datetime-utility.version>1.0.0</datetime-utility.version>
 	</properties>
 
@@ -113,44 +113,9 @@
 		</dependency>
 
 		<!-- gora -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.gora</groupId> -->
-<!-- 			<artifactId>gora-hbase</artifactId> -->
-<!-- 			<version>${gora.version}</version> -->
-<!-- 			<exclusions> -->
-<!-- 				<exclusion> -->
-<!-- 					<artifactId>jsp-2.1</artifactId> -->
-<!-- 					<groupId>org.mortbay.jetty</groupId> -->
-<!-- 				</exclusion> -->
-<!-- 				<exclusion> -->
-<!-- 					<artifactId>jsp-api-2.1</artifactId> -->
-<!-- 					<groupId>org.mortbay.jetty</groupId> -->
-<!-- 				</exclusion> -->
-<!-- 				<exclusion> -->
-<!-- 					<artifactId>servlet-api-2.5</artifactId> -->
-<!-- 					<groupId>org.mortbay.jetty</groupId> -->
-<!-- 				</exclusion> -->
-<!-- 				<exclusion> -->
-<!-- 					<artifactId>jetty</artifactId> -->
-<!-- 					<groupId>org.mortbay.jetty</groupId> -->
-<!-- 				</exclusion> -->
-<!-- 				<exclusion> -->
-<!-- 					<artifactId>jetty-util</artifactId> -->
-<!-- 					<groupId>org.mortbay.jetty</groupId> -->
-<!-- 				</exclusion> -->
-<!-- 				<exclusion> -->
-<!-- 					<artifactId>jasper-compiler</artifactId> -->
-<!-- 					<groupId>tomcat</groupId> -->
-<!-- 				</exclusion> -->
-<!-- 				<exclusion> -->
-<!-- 					<artifactId>jasper-runtime</artifactId> -->
-<!-- 					<groupId>tomcat</groupId> -->
-<!-- 				</exclusion> -->
-<!-- 			</exclusions> -->
-<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.apache.gora</groupId>
-			<artifactId>gora-mongodb</artifactId>
+			<artifactId>gora-hbase</artifactId>
 			<version>${gora.version}</version>
 			<exclusions>
 				<exclusion>
@@ -183,6 +148,41 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.gora</groupId> -->
+<!-- 			<artifactId>gora-mongodb</artifactId> -->
+<!-- 			<version>${gora.version}</version> -->
+<!-- 			<exclusions> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jsp-2.1</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jsp-api-2.1</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>servlet-api-2.5</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jetty</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jetty-util</artifactId> -->
+<!-- 					<groupId>org.mortbay.jetty</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jasper-compiler</artifactId> -->
+<!-- 					<groupId>tomcat</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>jasper-runtime</artifactId> -->
+<!-- 					<groupId>tomcat</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
+<!-- 		</dependency> -->
 		
 		<!-- datetime-utility -->
 		<dependency>
