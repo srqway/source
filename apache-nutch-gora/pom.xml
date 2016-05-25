@@ -20,6 +20,14 @@
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<properties>
@@ -33,7 +41,7 @@
 		<jstl.version>1.2</jstl.version>
 		<tomcat-servlet-api.version>7.0.61</tomcat-servlet-api.version>
 		<jackson.version>2.6.1</jackson.version>
-		<nutch.version>2.3</nutch.version>
+		<nutch.version>2.3.1</nutch.version>
 		<gora.version>0.6.1</gora.version>
 		<datetime-utility.version>1.0.0</datetime-utility.version>
 	</properties>
